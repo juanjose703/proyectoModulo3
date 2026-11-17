@@ -1,0 +1,6 @@
+@import 'app-common';
+
+// Android: estilo Material
+.tarjeta { border-radius: 4; border-left-width: 5; border-left-color: $acento; }
+.campo, .chip-tienda, .boton-primario, .boton-sec { border-radius: 4; }
+.pestana { text-transform: uppercase; font-size: 13; }

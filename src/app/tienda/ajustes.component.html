@@ -1,0 +1,30 @@
+<ActionBar title="Ajustes">
+  <NavigationButton text="Menú" android.systemIcon="ic_menu_more" (tap)="abrirMenu()"></NavigationButton>
+  <ActionItem text="Menú" ios.position="left" (tap)="abrirMenu()"></ActionItem>
+</ActionBar>
+<GridLayout rows="auto, *" class="pagina" (loaded)="cargar()">
+  <StackLayout row="0"><ns-barra-navegacion activa="ajustes"></ns-barra-navegacion></StackLayout>
+  <ScrollView row="1">
+    <StackLayout class="formulario">
+
+      <Label text="Usuario" class="seccion"></Label>
+      <Label [text]="'Nombre de usuario actual: ' + nombreGuardado" class="dato" textWrap="true"></Label>
+      <Label text="Cambiar nombre de usuario" class="etiqueta-campo"></Label>
+      <TextField [(ngModel)]="nombre" hint="Tu nombre" class="campo" autocorrect="false"></TextField>
+      <Button text="Guardar nombre" class="boton-primario" (tap)="guardarNombre()"></Button>
+      <Label [text]="mensajeNombre" class="mensaje" textWrap="true"></Label>
+
+      <Label text="Servidor" class="seccion"></Label>
+      <Label text="URL del API (ngrok): solo dominio y puerto" class="etiqueta-campo" textWrap="true"></Label>
+      <TextField [(ngModel)]="url" hint="https://xxxx.ngrok-free.dev" class="campo"
+                 keyboardType="url" autocorrect="false" autocapitalizationType="none"></TextField>
+      <Button text="Guardar URL" class="boton-primario" (tap)="guardarUrl()"></Button>
+      <GridLayout columns="*, *">
+        <Button col="0" text="Probar conexión" class="boton-sec" [isEnabled]="!probando" (tap)="probarConexion()"></Button>
+        <Button col="1" text="Restaurar" class="boton-sec" (tap)="restaurarUrl()"></Button>
+      </GridLayout>
+      <Label [text]="mensajeUrl" class="mensaje" textWrap="true"></Label>
+
+    </StackLayout>
+  </ScrollView>
+</GridLayout>

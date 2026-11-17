@@ -1,0 +1,56 @@
+@import 'tema';
+
+Page { background-color: $fondo; }
+ActionBar { background-color: $primario; color: white; }
+Label, TextField { color: $texto; font-size: 16; }
+Button { font-size: 15; }
+
+.pagina { background-color: $fondo; }
+
+// ---- Pestañas ----
+.pestanas { background-color: white; border-bottom-width: 1; border-bottom-color: $borde; }
+.pestana { background-color: transparent; color: $primario; border-bottom-width: 3; border-bottom-color: transparent; margin: 0; font-size: 14; }
+.pestana-activa { border-bottom-color: $acento; font-weight: bold; }
+
+// ---- Tarjetas de pedido ----
+.tarjeta { background-color: white; border-width: 1; border-color: $borde; padding: 12; margin: 4 12; }
+.codigo { font-size: 18; font-weight: bold; color: $primario-osc; margin-bottom: 4; }
+.dato { font-size: 15; color: $texto; margin-bottom: 2; }
+.hora { font-size: 13; color: $suave; margin-top: 4; }
+
+// ---- Íconos de favorito ----
+.estrella { font-size: 26; color: #b9b3cf; background-color: transparent; width: 52; height: 52; padding: 0; margin: 0; }
+.estrella-activa { color: $acento; }
+
+// ---- Formularios ----
+.formulario { padding: 12 16; background-color: white; }
+.etiqueta-campo { font-size: 14; font-weight: bold; color: $primario-osc; margin: 8 0 4 0; }
+.campo { background-color: $fondo; border-width: 1; border-color: $borde; padding: 10; margin-bottom: 6; }
+.boton-primario { background-color: $primario; color: white; font-weight: bold; margin: 6 0; }
+.boton-sec { background-color: transparent; color: $primario; border-width: 1; border-color: $primario; margin: 4; }
+.boton-leer { margin-top: 8; horizontal-alignment: left; }
+.seccion { font-size: 20; font-weight: bold; color: $primario; margin: 16 0 4 0; }
+.selector-tienda { margin-bottom: 6; }
+.chip-tienda { font-size: 15; text-align: center; padding: 10 0; margin: 2; background-color: $fondo; border-width: 1; border-color: $borde; color: $primario; }
+.chip-tienda-activo { background-color: $primario; border-color: $primario; color: white; font-weight: bold; }
+
+// ---- Estados y mensajes ----
+.estado { padding: 4 16; }
+.mensaje { font-size: 14; color: $suave; margin: 4 0; }
+.mensaje-error { color: $error; }
+.vacio { font-size: 16; color: $suave; padding: 24 20; text-align: center; }
+.subtitulo { font-size: 16; font-weight: bold; color: $primario-osc; }
+.encabezado-lista { padding: 4 16; }
+
+// ---- Inicio ----
+.saludo { background-color: $primario-osc; padding: 18 16; }
+.saludo-titulo { color: white; font-size: 22; font-weight: bold; }
+.saludo-detalle { color: #d1c4e9; font-size: 13; margin-top: 2; }
+
+// ---- Side drawer ----
+.menu { background-color: white; }
+.drawer-cabecera { background-color: $primario-osc; padding: 36 16 18 16; margin-bottom: 8; }
+.drawer-titulo { color: white; font-size: 24; font-weight: bold; }
+.drawer-subtitulo { color: #d1c4e9; font-size: 13; }
+.drawer-item { color: $texto; font-size: 17; padding: 14 16; border-left-width: 4; border-left-color: transparent; }
+.drawer-item-activo { background-color: #ede7f6; border-left-color: $acento; color: $primario; font-weight: bold; }

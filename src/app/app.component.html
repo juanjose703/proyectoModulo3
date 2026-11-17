@@ -1,0 +1,17 @@
+<RadSideDrawer>
+  <ScrollView tkDrawerContent class="menu">
+    <StackLayout>
+      <StackLayout class="drawer-cabecera">
+        <Label text="Mis Pedidos" class="drawer-titulo"></Label>
+        <Label text="Búsqueda, favoritos y lectura" class="drawer-subtitulo"></Label>
+      </StackLayout>
+      <Label text="Inicio" class="drawer-item" [class.drawer-item-activo]="esActiva('/inicio')" (tap)="navegar('/inicio')"></Label>
+      <Label text="Buscar pedidos" class="drawer-item" [class.drawer-item-activo]="esActiva('/pedidos')" (tap)="navegar('/pedidos')"></Label>
+      <Label text="Favoritos" class="drawer-item" [class.drawer-item-activo]="esActiva('/favoritos')" (tap)="navegar('/favoritos')"></Label>
+      <Label text="Ajustes" class="drawer-item" [class.drawer-item-activo]="esActiva('/ajustes')" (tap)="navegar('/ajustes')"></Label>
+    </StackLayout>
+  </ScrollView>
+  <GridLayout tkMainContent>
+    <page-router-outlet></page-router-outlet>
+  </GridLayout>
+</RadSideDrawer>

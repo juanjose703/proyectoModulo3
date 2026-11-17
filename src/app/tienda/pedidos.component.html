@@ -1,0 +1,50 @@
+<ActionBar title="Buscar pedidos">
+  <NavigationButton text="Menú" android.systemIcon="ic_menu_more" (tap)="abrirMenu()"></NavigationButton>
+  <ActionItem text="Menú" ios.position="left" (tap)="abrirMenu()"></ActionItem>
+</ActionBar>
+<GridLayout rows="auto, auto, auto, *" class="pagina" (loaded)="actualizarFavoritos()">
+  <StackLayout row="0"><ns-barra-navegacion activa="pedidos"></ns-barra-navegacion></StackLayout>
+
+  <!-- Formulario de búsqueda: tienda + caja de texto + botón -->
+  <StackLayout row="1" class="formulario">
+    <Label text="Tienda" class="etiqueta-campo"></Label>
+    <GridLayout columns="*, *, *" class="selector-tienda">
+      <Label *ngFor="let tienda of tiendas; let i = index" [col]="i" [text]="'Tienda ' + tienda"
+             class="chip-tienda" [class.chip-tienda-activo]="tienda === codigoTienda" (tap)="elegirTienda(tienda)"></Label>
+    </GridLayout>
+
+    <Label text="Código o dirección (opcional)" class="etiqueta-campo"></Label>
+    <GridLayout columns="*, auto">
+      <TextField col="0" hint="Ej. T3-002 o avenida 1" [(ngModel)]="textoBusqueda" class="campo"
+                 autocorrect="false" autocapitalizationType="none" returnKeyType="search" (returnPress)="buscar()"></TextField>
+      <Button col="1" text="Buscar" class="boton-primario" [isEnabled]="!cargando" (tap)="buscar()"></Button>
+    </GridLayout>
+  </StackLayout>
+
+  <StackLayout row="2" class="estado" *ngIf="cargando || mensaje || buscado">
+    <Label *ngIf="cargando" text="Buscando pedidos..." class="mensaje"></Label>
+    <Label *ngIf="mensaje" [text]="mensaje" class="mensaje mensaje-error" textWrap="true"></Label>
+    <GridLayout *ngIf="buscado && !cargando && !mensaje" columns="*, auto">
+      <Label col="0" [text]="resultados.length + ' resultado(s) en la tienda ' + codigoTienda" class="mensaje" verticalAlignment="center"></Label>
+      <Button col="1" text="Limpiar" class="boton-sec" (tap)="limpiar()"></Button>
+    </GridLayout>
+  </StackLayout>
+
+  <ListView row="3" [items]="resultados" separatorColor="transparent">
+    <ng-template let-pedido="item">
+      <GridLayout columns="*, auto" class="tarjeta">
+        <StackLayout col="0">
+          <Label [text]="pedido.codigo" class="codigo" textWrap="true"></Label>
+          <Label [text]="'Monto total: ' + pedido.montoTotal.toFixed(2)" class="dato" textWrap="true"></Label>
+          <Label [text]="'Dirección: ' + pedido.direccion" class="dato" textWrap="true"></Label>
+          <Label [text]="'Entrega solicitada: ' + pedido.fechaEntregaSolicitada" class="dato" textWrap="true"></Label>
+        </StackLayout>
+        <!-- Ícono de favorito -->
+        <Button col="1" [text]="codigosFavoritos.has(pedido.codigo) ? '★' : '☆'" class="estrella"
+                [class.estrella-activa]="codigosFavoritos.has(pedido.codigo)"
+                [accessibilityLabel]="codigosFavoritos.has(pedido.codigo) ? 'Quitar de favoritos' : 'Guardar como favorito'"
+                (tap)="alternarFavorito(pedido)" verticalAlignment="top"></Button>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>

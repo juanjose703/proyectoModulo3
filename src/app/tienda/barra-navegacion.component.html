@@ -1,0 +1,6 @@
+<GridLayout columns="*, *, *, *" class="pestanas">
+  <Button col="0" text="Inicio" class="pestana" [class.pestana-activa]="activa === 'inicio'" [nsRouterLink]="['/inicio']"></Button>
+  <Button col="1" text="Buscar" class="pestana" [class.pestana-activa]="activa === 'pedidos'" [nsRouterLink]="['/pedidos']"></Button>
+  <Button col="2" text="Favoritos" class="pestana" [class.pestana-activa]="activa === 'favoritos'" [nsRouterLink]="['/favoritos']"></Button>
+  <Button col="3" text="Ajustes" class="pestana" [class.pestana-activa]="activa === 'ajustes'" [nsRouterLink]="['/ajustes']"></Button>
+</GridLayout>

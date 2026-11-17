@@ -1,0 +1,35 @@
+<ActionBar title="Inicio">
+  <NavigationButton text="Menú" android.systemIcon="ic_menu_more" (tap)="abrirMenu()"></NavigationButton>
+  <ActionItem text="Menú" ios.position="left" (tap)="abrirMenu()"></ActionItem>
+</ActionBar>
+<GridLayout rows="auto, auto, auto, *" class="pagina" (loaded)="cargar()">
+  <StackLayout row="0"><ns-barra-navegacion activa="inicio"></ns-barra-navegacion></StackLayout>
+
+  <StackLayout row="1" class="saludo">
+    <Label [text]="'Hola, ' + nombre" class="saludo-titulo" textWrap="true"></Label>
+    <Label text="Pedidos que marcaste con “Leer ahora” desde Favoritos" class="saludo-detalle" textWrap="true"></Label>
+  </StackLayout>
+
+  <GridLayout row="2" columns="*, auto" class="encabezado-lista" *ngIf="(lecturas$ | async)?.length">
+    <Label col="0" [text]="(lecturas$ | async)?.length + ' en lectura'" class="subtitulo" verticalAlignment="center"></Label>
+    <Button col="1" text="Vaciar" class="boton-sec" (tap)="vaciar()"></Button>
+  </GridLayout>
+
+  <Label row="3" *ngIf="(lecturas$ | async)?.length === 0" class="vacio" textWrap="true"
+         text="Todavía no hay nada aquí. Guarda un pedido como favorito (★) y toca “Leer ahora”."></Label>
+
+  <ListView row="3" [items]="lecturas$ | async" separatorColor="transparent">
+    <ng-template let-lectura="item">
+      <GridLayout columns="*, auto" class="tarjeta">
+        <StackLayout col="0">
+          <Label [text]="lectura.pedido.codigo" class="codigo" textWrap="true"></Label>
+          <Label [text]="'Monto total: ' + lectura.pedido.montoTotal.toFixed(2)" class="dato" textWrap="true"></Label>
+          <Label [text]="'Dirección: ' + lectura.pedido.direccion" class="dato" textWrap="true"></Label>
+          <Label [text]="'Entrega solicitada: ' + lectura.pedido.fechaEntregaSolicitada" class="dato" textWrap="true"></Label>
+          <Label [text]="'Leído a las ' + lectura.hora" class="hora" textWrap="true"></Label>
+        </StackLayout>
+        <Button col="1" text="Quitar" class="boton-sec" verticalAlignment="top" (tap)="quitar(lectura)"></Button>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>
